@@ -1,0 +1,206 @@
+{{define "body"}}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+	<!--[if gte mso 9]>
+	<xml>
+		<o:OfficeDocumentSettings>
+		<o:AllowPNG/>
+		<o:PixelsPerInch>96</o:PixelsPerInch>
+		</o:OfficeDocumentSettings>
+	</xml>
+	<![endif]-->
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="format-detection" content="date=no" />
+	<meta name="format-detection" content="address=no" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="x-apple-disable-message-reformatting" />
+    <!--[if !mso]><!-->
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+    <!--<![endif]-->
+	<title>Email Template</title>
+	<!--[if gte mso 9]>
+	<style type="text/css" media="all">
+		sup { font-size: 100% !important; }
+	</style>
+	<![endif]-->
+	
+
+	<style type="text/css" media="screen">
+		/* Linked Styles */
+		body { padding:0 !important; margin:0 !important; display:block !important; min-width:100% !important; width:100% !important; background:#0a2641; -webkit-text-size-adjust:none }
+		a { color:#8fc55b; text-decoration:none }
+		p { padding:0 !important; margin:0 !important } 
+		img { -ms-interpolation-mode: bicubic; /* Allow smoother rendering of resized image in Internet Explorer */ }
+		.mcnPreviewText { display: none !important; }
+
+				
+		/* Mobile styles */
+		@media only screen and (max-device-width: 480px), only screen and (max-width: 480px) {
+			u + .body .gwfw { width:100% !important; width:100vw !important; }
+
+			.m-shell { width: 100% !important; min-width: 100% !important; }
+			
+			.m-center { text-align: center !important; }
+			.center { margin: 0 auto !important; }
+			
+			.td { width: 100% !important; min-width: 100% !important; }
+			.h2 { font-size: 35px !important; line-height: 40px !important; }
+			.nav { font-size: 12px !important; line-height: 22px !important; padding: 10px !important; }
+
+			.m-br-15 { height: 15px !important; }
+			.p0-15-30 { padding: 0px 15px 30px 15px !important; }
+			.p0-20-30 { padding: 0px 20px 30px 20px !important; }
+			.p30-0 { padding: 30px 0px !important; }
+			.p30-20 { padding: 30px 20px !important; }
+			.pb30 { padding-bottom: 30px !important; }
+			.p10 { padding: 10px !important; }
+
+			.m-td,
+			.m-hide { display: none !important; width: 0 !important; height: 0 !important; font-size: 0 !important; line-height: 0 !important; min-height: 0 !important; }
+
+			.m-block { display: block !important; }
+
+			.fluid-img img { width: 100% !important; max-width: 100% !important; height: auto !important; }
+
+			.column,
+			.column-dir,
+			.column-top,
+			.column-bottom,
+			.column-dir-top { float: left !important; width: 100% !important; display: block !important; }
+
+			.content-spacing { width: 15px !important; }
+		}
+	</style>
+</head>
+<body class="body" style="padding:0 !important; margin:0 !important; display:block !important; min-width:100% !important; width:100% !important; background:#0a2641; -webkit-text-size-adjust:none;">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#0a2641" class="gwfw">
+		<tr>
+			<td align="center" valign="top" style="padding: 50px 10px;" class="p10">
+				<table width="650" border="0" cellspacing="0" cellpadding="0" class="m-shell">
+					<tr>
+						<td class="td" bgcolor="#ffffff" style="border-radius: 12px; width:650px; min-width:650px; font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
+							<!-- Main -->
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td>
+										<!-- Header -->
+										<table width="100%" border="0" cellspacing="0" cellpadding="0">
+											<tr>
+												<td class="p30-20" style="padding: 40px 50px;">
+													<table width="100%" border="0" cellspacing="0" cellpadding="0">
+														<tr>
+															<th class="column-top" width="120" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top;">
+																<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																	<tr>
+																		<td class="logo m-center img" style="font-size:0pt; line-height:0pt; text-align:center;"><img src="https://stori-email-images.s3.amazonaws.com/StoriLogo.jpg" width="290" height="90" editable="true" border="0" alt="" /></td>
+																	</tr>
+																</table>
+															</th>
+													  </tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+										<!-- END Header -->
+										
+										<repeater>
+											<!-- Title + Copy - center -->
+											<layout label='Title + Copy - center'>
+												<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#62b3ff">
+													<tr>
+														<td class="p30-20" style="padding: 80px 50px;">
+															<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																<tr>
+																	<td class="h1 white center" style="padding-bottom: 20px; font-family:'Lato', Arial, sans-serif; font-size:44px; line-height:50px; color:#ffffff; text-align:center;"><multiline>Account statement</multiline></td>
+																</tr>
+																<tr>
+																	<td class="text white center" style="padding-bottom: 25px; font-family:'Lato', Arial, sans-serif; font-size:16px; line-height:28px; min-width:auto !important; color:#ffffff; text-align:left;"><multiline>Here you can see a summary of the operations of your account in the last year.</multiline></td>
+																</tr>
+																<tr>
+																	<td align="center">
+																		<table border="0" cellspacing="0" cellpadding="0">
+																			<tr>
+																				<td class="text-button" style="color:#ffffff; width:300px; font-family:'Lato', Arial, sans-serif; font-size:16px; line-height:20px; text-align:center; font-weight:bold; min-width:auto !important; padding:12px 22px; background:#0a2641; border-radius:4px;">
+																					<multiline><span class="link-white" style="color:#ffffff; text-decoration:none;">Total balance  </span>
+                                            <span class="link-white" style="color:#ffffff; text-decoration:none;">{{.Total}}</span>
+                                          </a></multiline>
+																				</td>
+																			</tr>
+																		</table>
+																	</td>
+																</tr>
+                                <tr>
+																	<td align="center">
+																		<table border="0" style="margin-top:10px;" cellspacing="0" cellpadding="0">
+																			<tr>
+																				<td class="text-button" style="color:#ffffff; width:300px; font-family:'Lato', Arial, sans-serif; font-size:16px; line-height:20px; text-align:center; font-weight:bold; min-width:auto !important; padding:12px 22px; background:#0a2641; border-radius:4px;">
+																					<multiline><span class="link-white" style="color:#ffffff; text-decoration:none;">Average credit amount  </span>
+                                            <span class="link-white" style="color:#ffffff; text-decoration:none;">{{.AverageCredit}}</span>
+                                          </a></multiline>
+																				</td>
+																			</tr>
+																		</table>
+																	</td>
+																</tr>
+                                <tr>
+																	<td align="center">
+																		<table border="0" style="margin-top:10px;" cellspacing="0" cellpadding="0">
+																			<tr>
+																				<td class="text-button" style="color:#ffffff; width:300px; font-family:'Lato', Arial, sans-serif; font-size:16px; line-height:20px; text-align:center; font-weight:bold; min-width:auto !important; padding:12px 22px; background:#0a2641; border-radius:4px;">
+																					<multiline><span class="link-white" style="color:#ffffff; text-decoration:none;">Average debit amount </span>
+                                            <span class="link-white" style="color:#ffffff; text-decoration:none;">{{.AverageDebit}}</span>
+                                          </a></multiline>
+																				</td>
+																			</tr>
+																		</table>
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+												</table>
+											</layout>
+											<!-- END Title + Copy - center -->
+											
+											<!-- Article -->
+											<layout label='Article'>
+												<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#00122c">
+													<tr>
+														<td style="padding: 50px;" class="p30-20">
+															<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																<tr>
+																	<td class="h3 white center" style="padding-bottom: 30px; font-family:'Lato', Arial, sans-serif; font-size:20px; line-height:24px; color:#ffffff; text-align:center;"><multiline>Number of operations performed per month</multiline></td>
+																</tr>
+																<tr>
+																	<td class="text2 grey center" style="padding-bottom: 25px; font-family:'Lato', Arial, sans-serif; font-size:15px; line-height:28px; min-width:auto !important; color:#848b95; text-align:center;"><multiline>Here you will be able to see the amount of operations you did in each month, this will allow you to keep track of your operations. </multiline></td>
+																</tr>
+                                {{range $key, $value := .TransactionResume}}
+                                  <tr>
+                                    <td class="price white center" style="padding-bottom: 25px; font-family:'Lato', Arial, sans-serif; font-size:20px; line-height:26px; color:#ffffff; text-align:center;">
+                                      <multiline><strong style="text-align:left;">{{$key}} </strong></multiline>
+                                      <multiline><strong>{{$value}} </strong></multiline>
+																	  </td>
+																  </tr>
+                                {{end}}
+															</table>
+														</td>
+													</tr>
+												</table>
+											</layout>
+											<!-- END Article -->
+									</td>
+								</tr>
+							</table>
+							<!-- END Main -->
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
+{{end}}

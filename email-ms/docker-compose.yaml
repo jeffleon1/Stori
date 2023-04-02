@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  app:
+    build: 
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    ports:
+      - 5001:5001
+      - 9092:9092
+
+  mailhog:
+    image: 'mailhog/mailhog:latest'
+    restart: always
+    ports:
+      - "1025:1025"
+      - "8025:8025"

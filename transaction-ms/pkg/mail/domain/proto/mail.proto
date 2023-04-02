@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package mail;
+
+option go_package = "github.com/jeffleon1/transaction-ms/pkg/mail/domain/proto";
+
+message MailRequest {
+    map<string, int64> transaction_resume = 1;
+    string total = 2;
+    string average_credit = 3;
+    string average_debit = 4;
+    string from = 5;
+	string from_name = 6;
+	string to = 7;
+	string subject = 8;
+}
+
+message MailResponse {
+    string message = 1;
+}
+
+service MailService {
+    rpc SendMail (MailRequest) returns (MailResponse);
+}

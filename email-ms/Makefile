@@ -1,0 +1,2 @@
+proto:
+	protoc -Ipkg/mail/domain/proto --go_out=. --go_opt=module=github.com/jeffleon1/email-ms --go-grpc_out=. --go-grpc_opt=module=github.com/jeffleon1/email-ms pkg/mail/domain/proto/mail.proto
