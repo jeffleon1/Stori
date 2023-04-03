@@ -11,6 +11,8 @@ services:
     ports:
       - 5001:5001
       - 9092:9092
+    networks:
+      - email-ms-network
 
   mailhog:
     image: 'mailhog/mailhog:latest'
@@ -18,3 +20,10 @@ services:
     ports:
       - "1025:1025"
       - "8025:8025"
+    networks:
+      - email-ms-network
+
+networks:
+  email-ms-network:
+    driver: bridge
+    name: grpc_network

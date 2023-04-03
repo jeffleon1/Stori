@@ -3,8 +3,6 @@ FROM golang AS builder
 
 WORKDIR /src
 
-ARG SSH_PRIVATE_KEY
-
 ENV GO111MODULE=on \
     CGO_ENABLED=0 \
     GOOS=linux \
