@@ -62,9 +62,27 @@ ones your application is app and running please go to documentation [http://loca
     <img src="https://stori-email-images.s3.amazonaws.com/readme/swaggertryout.png" height="300">
 </p>
 
-* Click in execute and see a example of response below
+Then Check the account resume was create in mongo db via mongo Express [http://localhost:8081](http://localhost:8081)
+
+* Enter the credentials that you use in DB_PASSWORD and DB_USER in .env file
+
 <p align="center">
-    <img src="https://stori-email-images.s3.amazonaws.com/readme/example.png" height="300">
+    <img src="https://stori-email-images.s3.amazonaws.com/readme/mongoexpress.png" width="600px" height="250">
+</p>
+
+* Click in green button View in row stori
+<p align="center">
+    <img src="https://stori-email-images.s3.amazonaws.com/readme/mongoexpressstori.png" width="600px" height="250">
+</p>
+
+* Click in green button View
+<p align="center">
+    <img src="https://stori-email-images.s3.amazonaws.com/readme/mongoexpressview.png" width="600px" height="250">
+</p>
+
+* Finally find your account resume
+<p align="center">
+    <img src="https://stori-email-images.s3.amazonaws.com/readme/mongoexpressviewcollection.png" width="600px" height="250">
 </p>
 
 Then check in mailhog the mail that you send [http://localhost:8025](http://localhost:8025)
@@ -86,7 +104,13 @@ Then check in mailhog the mail that you send [http://localhost:8025](http://loca
     <img src="https://stori-email-images.s3.amazonaws.com/readme/email.png" height="300">
 </p>
 
+----
+### MongoExpress
 
+* check [Mongo Express](http://localhost:8081)
+
+__Note:__
+###### the app need to be up and running
 ----
 ### Email
 
