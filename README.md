@@ -57,7 +57,7 @@ ones your application is app and running please go to documentation [http://loca
     <img src="https://stori-email-images.s3.amazonaws.com/readme/swagger2.png" height="300">
 </p>
 
-* Click in try it out then choose a csv file and the email that you want
+* Click in try it out then choose a csv file and the email that you want, in the root folder you can see a example.csv this file contain the format that the app need for run in good way 
 <p align="center">
     <img src="https://stori-email-images.s3.amazonaws.com/readme/swaggertryout.png" height="300">
 </p>
