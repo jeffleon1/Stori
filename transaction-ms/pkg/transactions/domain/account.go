@@ -10,6 +10,7 @@ type AccountResume struct {
 	Total              string              `json:"total" bson:"total"`
 	AverageCredit      string              `json:"average_credit" bson:"average_credit"`
 	AverageDebit       string              `json:"average_debit" bson:"average_debit"`
+	Email              string              `json:"email" bson:"email"`
 }
 
 type AccountRepository interface {

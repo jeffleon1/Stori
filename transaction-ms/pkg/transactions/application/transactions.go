@@ -6,7 +6,6 @@ import (
 	"regexp"
 
 	domainMail "github.com/jeffleon1/transaction-ms/pkg/mail/domain"
-	"github.com/jeffleon1/transaction-ms/pkg/transactions/domain"
 	domainTransactions "github.com/jeffleon1/transaction-ms/pkg/transactions/domain"
 )
 
@@ -17,12 +16,12 @@ type transactionService struct {
 }
 
 type TransactionService interface {
-	ProcessAccountData(file *multipart.File, header *multipart.FileHeader) error
+	ProcessAccountData(file *multipart.File, header *multipart.FileHeader, mail string) error
 }
 
 func NewTransactionService(
 	transactionRepo domainTransactions.TransactionRepository,
-	accountRepo domain.AccountRepository,
+	accountRepo domainTransactions.AccountRepository,
 	mailRepo domainMail.GrpcMailRepository,
 ) TransactionService {
 	return &transactionService{
@@ -32,13 +31,23 @@ func NewTransactionService(
 	}
 }
 
-func (t *transactionService) ProcessAccountData(file *multipart.File, header *multipart.FileHeader) error {
-	matched, err := regexp.MatchString(`([0-9A-Za-z]+).csv$`, header.Filename)
+func (t *transactionService) ProcessAccountData(file *multipart.File, header *multipart.FileHeader, mail string) error {
+
+	mailValidation, err := regexp.MatchString(`^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$`, mail)
 	if err != nil {
 		return err
 	}
 
-	if !matched {
+	if !mailValidation {
+		return fmt.Errorf("email %s is not allowed", mail)
+	}
+
+	fileTypeMatched, err := regexp.MatchString(`([0-9A-Za-z]+).csv$`, header.Filename)
+	if err != nil {
+		return err
+	}
+
+	if !fileTypeMatched {
 		return fmt.Errorf("not type of file allowed please try with csv file")
 	}
 	transactions, err := t.transactionRepo.CastMultipartFileToStruct(file)
@@ -53,6 +62,7 @@ func (t *transactionService) ProcessAccountData(file *multipart.File, header *mu
 		Total:              fmt.Sprintf("$%.2f", resumeAccount.Total),
 		AverageCredit:      fmt.Sprintf("$%.2f", resumeAccount.Credit),
 		AverageDebit:       fmt.Sprintf("$%.2f", resumeAccount.Debit),
+		Email:              mail,
 	}
 
 	if err := t.accountRepo.InsertAccountResume(accountResume); err != nil {

@@ -30,6 +30,13 @@ const docTemplate = `{
                 "summary": "account balance processor",
                 "parameters": [
                     {
+                        "type": "string",
+                        "format": "email",
+                        "description": "name search by q",
+                        "name": "email",
+                        "in": "query"
+                    },
+                    {
                         "type": "file",
                         "description": "this is a csv test file",
                         "name": "file",

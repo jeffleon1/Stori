@@ -21,6 +21,11 @@ paths:
       - application/json
       description: upload one csv file with the resume of account user
       parameters:
+      - description: name search by q
+        format: email
+        in: query
+        name: email
+        type: string
       - description: this is a csv test file
         in: formData
         name: file

@@ -25,8 +25,15 @@ func init() {
 type config struct {
 	Environment string `env:"APP_ENV"`
 	AppPort     string `env:"APP_PORT"`
+	Mail
 	Database
 	Grpc
+}
+
+type Mail struct {
+	From     string `env:"MAIL_FROM" envDefault:"accounts.balance@stori.com"`
+	FromName string `env:"MAIL_FROM_NAME" envDefault:"Stori"`
+	Subject  string `env:"MAIL_SUBJECT" envDefault:"Account resume"`
 }
 
 type Grpc struct {

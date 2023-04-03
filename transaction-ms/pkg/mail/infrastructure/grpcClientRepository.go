@@ -4,6 +4,7 @@ import (
 	"context"
 	"time"
 
+	"github.com/jeffleon1/transaction-ms/internal/config"
 	domainMail "github.com/jeffleon1/transaction-ms/pkg/mail/domain"
 	pb "github.com/jeffleon1/transaction-ms/pkg/mail/domain/proto"
 	domainTransactions "github.com/jeffleon1/transaction-ms/pkg/transactions/domain"
@@ -28,10 +29,10 @@ func (mc *MailClient) SendMail(mail domainTransactions.AccountResume) error {
 		Total:             mail.Total,
 		AverageCredit:     mail.AverageCredit,
 		AverageDebit:      mail.AverageDebit,
-		From:              "jeffersonleon1527@gmail.com",
-		FromName:          "pepito",
-		To:                "example@gmail.com",
-		Subject:           "Account Resume",
+		From:              config.Config.From,
+		FromName:          config.Config.FromName,
+		To:                mail.Email,
+		Subject:           config.Config.Subject,
 	})
 
 	if err != nil {
