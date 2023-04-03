@@ -24,7 +24,6 @@ RUN apk --no-cache add ca-certificates tzdata
 WORKDIR /app
 # Retrieve the binary from the previous stage
 COPY --from=builder /go/bin/app /go/bin/app
-COPY entrypoint.sh .
 RUN chmod a+x /go/bin/app
 
 # Set the binary as the entrypoint of the container

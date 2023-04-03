@@ -3,7 +3,7 @@ version: '3'
 services:
   email-ms:
     build: 
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.localdev
     env_file:
       - .env
     volumes:
