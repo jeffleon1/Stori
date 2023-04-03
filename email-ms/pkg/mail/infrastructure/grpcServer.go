@@ -17,6 +17,7 @@ type Mailserver struct {
 	SMTPClient *mail.SMTPClient
 }
 
+// This functions encapsulate the logic for send an email in the function (PrepareEmail)
 func (m *Mailserver) SendMail(ctx context.Context, req *pb.MailRequest) (*pb.MailResponse, error) {
 	err := m.PrepareEmail(req)
 	if err != nil {
@@ -28,6 +29,7 @@ func (m *Mailserver) SendMail(ctx context.Context, req *pb.MailRequest) (*pb.Mai
 	}, nil
 }
 
+// This funcion prepare and execute the template .html and send the email
 func (m *Mailserver) PrepareEmail(msg *pb.MailRequest) error {
 	htmlBody, err := m.buildHTMLMessage(msg)
 	if err != nil {
@@ -48,6 +50,8 @@ func (m *Mailserver) PrepareEmail(msg *pb.MailRequest) error {
 	return nil
 }
 
+// This function execute the template alocated in pkg/mail/infrastructure/templates/account_resume.html.gohtml
+// and add the css used in the html
 func (m *Mailserver) buildHTMLMessage(msg *pb.MailRequest) (string, error) {
 	templateToRender := "./pkg/mail/infrastructure/templates/account_resume.html.gohtml"
 
@@ -71,6 +75,7 @@ func (m *Mailserver) buildHTMLMessage(msg *pb.MailRequest) (string, error) {
 	return formattedMessage, nil
 }
 
+// transform the css of template inside of html
 func (m *Mailserver) inlineCSS(s string) (string, error) {
 	options := premailer.Options{
 		RemoveClasses:     false,

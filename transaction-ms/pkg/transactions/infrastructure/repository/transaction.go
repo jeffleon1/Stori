@@ -28,6 +28,11 @@ func (c *transactionRepository) CastMultipartFileToStruct(file *multipart.File) 
 	return transactions, nil
 }
 
+// This functions encapsulate all process of transaction
+// 1.) Splits transactions into chunks to process them (chunksTransactions)
+// 2.) Parse transaction chunks in the correct way for processing them (operateCSVTransactions)
+// 3.) Concat all chunks results in a only one object (concatTransactionChunks)
+// 4.) Parse the object in correct way to be send in email (returnResults)
 func (c *transactionRepository) ProccessTransactions(transactions []*domain.CSVTransaction) domain.Transaction {
 	chunkTransactions := c.chunksTransactions(transactions, 2)
 	channelTransaction := make(chan map[int64]map[int64]dto.AmountOfTransactions)
@@ -48,6 +53,8 @@ func (c *transactionRepository) ProccessTransactions(transactions []*domain.CSVT
 	return results
 }
 
+// This function encapsulated the processAverage that return the average amount of credit and debit
+// and processTransactionResults that function return the way to pass the information to email
 func (c *transactionRepository) returnResults(
 	concatTransactions map[int64]map[int64]dto.AmountOfTransactions,
 	arrayAverages []domain.AverageObj,
@@ -60,6 +67,8 @@ func (c *transactionRepository) returnResults(
 	return <-channelTransactionResults
 }
 
+// This function process the concatenated transaction object and parse to the
+// object that email use for body information
 func (c *transactionRepository) processTransactionResults(
 	transactions map[int64]map[int64]dto.AmountOfTransactions,
 	channelTransactionResults chan<- domain.Transaction,
@@ -88,6 +97,7 @@ func (c *transactionRepository) processTransactionResults(
 
 }
 
+// This functionprocess credit and debit averages
 func (c *transactionRepository) processAverage(arrayAverages []domain.AverageObj, channel chan<- domain.Transaction) {
 	var averageCredit float64 = 0
 	var averageNoCredit int64 = 0
@@ -113,6 +123,7 @@ func (c *transactionRepository) processAverage(arrayAverages []domain.AverageObj
 
 }
 
+// once all the parts are processed this function concatenates them all leaving a single object.
 func (c *transactionRepository) concatTransactionChunks(postProcesedChunks []map[int64]map[int64]dto.AmountOfTransactions) map[int64]map[int64]dto.AmountOfTransactions {
 	if len(postProcesedChunks) < 1 {
 		return nil
@@ -148,6 +159,7 @@ func (c *transactionRepository) concatTransactionChunks(postProcesedChunks []map
 
 }
 
+// This function determinates the size of slices determinates by the numberOfChunks
 func (c *transactionRepository) chunksTransactions(transactions []*domain.CSVTransaction, numberOfChunks int) [][]*domain.CSVTransaction {
 	var result [][]*domain.CSVTransaction
 	for i := 0; i < numberOfChunks; i++ {
@@ -161,6 +173,17 @@ func (c *transactionRepository) chunksTransactions(transactions []*domain.CSVTra
 	return result
 }
 
+// This function recieve a domain.CSVTransaction then manipulate the data
+// for organize the array and become in map with the month and day and the amount of transaction
+// in this particular day
+// example: [{date:"07/15", amount:"12.34"}] response channelTransaction --> {
+//	7: {
+// 		15: {
+//			amount: 12.34,
+//			notransactions: 1, --> is one because is the first transaction this day
+//		},
+//	},
+// }
 func (c *transactionRepository) operateCSVTransactions(
 	transactions []*domain.CSVTransaction,
 	channelTransaction chan<- map[int64]map[int64]dto.AmountOfTransactions,
@@ -215,6 +238,8 @@ func (c *transactionRepository) operateCSVTransactions(
 	channelTransaction <- transactionsObj
 }
 
+// This function recieve as parameter a string with format "month/day" and return an integer of month and day
+// example: ---> string "07/15"  return ---> integers 07, 15
 func (c *transactionRepository) CastDate(date string) (int64, int64, error) {
 	split := strings.Split(date, "/")
 	if len(split) != 2 {

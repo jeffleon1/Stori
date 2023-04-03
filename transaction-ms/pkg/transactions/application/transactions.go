@@ -31,6 +31,13 @@ func NewTransactionService(
 	}
 }
 
+// This function
+// 1.) macth if mail string has a correct way of email
+// 2.) check if file uploaded is a csv
+// 3.) do a cast of file uploaded in an array of structs
+// 4.) process this array struct and return and object with all transactions in correct way
+// 5.) insert the account resume in mongodb
+// 6.) send the email with the resume
 func (t *transactionService) ProcessAccountData(file *multipart.File, header *multipart.FileHeader, mail string) error {
 
 	mailValidation, err := regexp.MatchString(`^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$`, mail)

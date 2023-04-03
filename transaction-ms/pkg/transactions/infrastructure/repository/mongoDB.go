@@ -25,6 +25,7 @@ func NewAccountRepository(db *mongo.Database) domain.AccountRepository {
 	}
 }
 
+// Insert account resume in mongoDb
 func (t *accountRepository) InsertAccountResume(accountResume domain.AccountResume) error {
 	result, err := t.accountCollection.InsertOne(t.ctx, accountResume)
 	if err != nil {
