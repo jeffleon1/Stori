@@ -1,0 +1,43 @@
+basePath: /api/stori/v1/public
+definitions:
+  infrastructure.Response:
+    properties:
+      data: {}
+      error: {}
+      msg:
+        type: string
+      status:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  title: stori API
+  version: "1.0"
+paths:
+  /account/balance:
+    post:
+      consumes:
+      - application/json
+      description: upload one csv file with the resume of account user
+      parameters:
+      - description: this is a csv test file
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/infrastructure.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/infrastructure.Response'
+      summary: account balance processor
+      tags:
+      - Account
+swagger: "2.0"

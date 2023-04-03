@@ -13,7 +13,7 @@ type Router interface {
 
 func NewRouter(routes RoutesGroup) Router {
 	route := gin.Default()
-	public := route.Group("/api/transaction/v1/public")
+	public := route.Group("/api/stori/v1/public")
 	routes.Transaction.PublicRoutes(public)
 	routes.Health.RegisterRoutes(public)
 	routes.Swagger.RegisterRoutes(public)

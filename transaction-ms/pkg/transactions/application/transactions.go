@@ -3,6 +3,7 @@ package service
 import (
 	"fmt"
 	"mime/multipart"
+	"regexp"
 
 	domainMail "github.com/jeffleon1/transaction-ms/pkg/mail/domain"
 	"github.com/jeffleon1/transaction-ms/pkg/transactions/domain"
@@ -32,6 +33,14 @@ func NewTransactionService(
 }
 
 func (t *transactionService) ProcessAccountData(file *multipart.File, header *multipart.FileHeader) error {
+	matched, err := regexp.MatchString(`([0-9A-Za-z]+).csv$`, header.Filename)
+	if err != nil {
+		return err
+	}
+
+	if !matched {
+		return fmt.Errorf("not type of file allowed please try with csv file")
+	}
 	transactions, err := t.transactionRepo.CastMultipartFileToStruct(file)
 	if err != nil {
 		return err

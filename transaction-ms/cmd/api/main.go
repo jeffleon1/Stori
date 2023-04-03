@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/jeffleon1/transaction-ms/internal/config"
 	"github.com/jeffleon1/transaction-ms/pkg/health"
 	grpcClientDomain "github.com/jeffleon1/transaction-ms/pkg/mail/domain"
 	pb "github.com/jeffleon1/transaction-ms/pkg/mail/domain/proto"
@@ -22,8 +23,13 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 )
 
-func main() {
+// @title     stori API
+// @version   1.0
 
+// @host      localhost:8080
+// @BasePath  /api/stori/v1/public
+
+func main() {
 	conn, grpcMailRepo, err := gRPCClientRepo()
 	if err != nil {
 		log.Fatalf("Failed to listen for gRPC: %v", err)
@@ -38,7 +44,7 @@ func main() {
 		Transaction: transactionRoutes,
 	})
 
-	logrus.Fatal(r.Run(fmt.Sprintf(":%s", "8080")))
+	logrus.Fatal(r.Run(fmt.Sprintf(":%s", config.Config.AppPort)))
 }
 
 func InitTransactionPackage(grpcClientRepo grpcClientDomain.GrpcMailRepository) *infrastructure.TransactionRoutes {
@@ -50,7 +56,7 @@ func InitTransactionPackage(grpcClientRepo grpcClientDomain.GrpcMailRepository) 
 }
 
 func gRPCClientRepo() (*grpc.ClientConn, *grpcClientDomain.GrpcMailRepository, error) {
-	conn, err := grpc.Dial(fmt.Sprintf("%s:%s", "localhost", "5001"), grpc.WithTransportCredentials(insecure.NewCredentials()), grpc.WithBlock())
+	conn, err := grpc.Dial(fmt.Sprintf("%s:%s", config.Config.GrpcHost, config.Config.GrpcPort), grpc.WithTransportCredentials(insecure.NewCredentials()), grpc.WithBlock())
 	if err != nil {
 		return nil, nil, err
 	}
@@ -63,9 +69,9 @@ func InitMongoDB() domain.AccountRepository {
 	ctx := context.TODO()
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(fmt.Sprintf(
 		"mongodb://%s:%s@%s:27017",
-		"stori",
-		"stori",
-		"localhost",
+		config.Config.DbUser,
+		config.Config.DbPassword,
+		config.Config.DbHost,
 	)))
 	if err != nil {
 		panic(err)
@@ -76,6 +82,6 @@ func InitMongoDB() domain.AccountRepository {
 		log.Fatal(err)
 	}
 
-	db := client.Database("stori")
+	db := client.Database(config.Config.DbName)
 	return repository.NewAccountRepository(db)
 }

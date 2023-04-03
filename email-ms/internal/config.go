@@ -1,49 +1,44 @@
 package config
 
 import (
-	"log"
-
-	"github.com/spf13/viper"
+	"github.com/caarlos0/env/v6"
+	"github.com/joho/godotenv"
+	"github.com/sirupsen/logrus"
 )
 
-var EnvConfigs *envConfigs
+var Config config
 
-// We will call this in main.go to load the env variables
-func InitEnvConfigs() {
-	EnvConfigs = loadEnvVariables()
-}
-
-type envConfigs struct {
-	AppEnvironment   string `mapstructure:"APP_ENV"`
-	EmailHost        string `mapstructure:"EMAIL_HOST"`
-	EmailPort        int    `mapstructure:"EMAIL_PORT"`
-	EmailDomain      string `mapstructure:"EMAIL_DOMAIN"`
-	EmailPassword    string `mapstructure:"EMAIL_PASSWORD"`
-	EmailUserName    string `mapstructure:"EMAIL_USERNAME"`
-	EmailEncription  string `mapstructure:"EMAIL_ENCRIPTION"`
-	EmailFromName    string `mapstructure:"EMAIL_FROM_NAME"`
-	EmailFromAddress string `mapstructure:"EMAIL_FROM_ADDRESS"`
-	GRPCPort         string `mapstructure:"GRPC_PORT"`
-}
-
-func loadEnvVariables() (config *envConfigs) {
-	// Tell viper the path/location of your env file. If it is root just add "."
-	viper.AddConfigPath(".")
-
-	// Tell viper the name of your file
-	viper.SetConfigName(".env")
-
-	// Tell viper the type of your file
-	viper.SetConfigType("env")
-
-	// Viper reads all the variables from env file and log error if any found
-	if err := viper.ReadInConfig(); err != nil {
-		log.Fatal("Error reading env file", err)
+func init() {
+	// Loading the environment variables from '.env' file.
+	err := godotenv.Load()
+	if err != nil {
+		logrus.Errorf("Error you can load the env variables by file")
 	}
 
-	// Viper unmarshals the loaded env varialbes into the struct
-	if err := viper.Unmarshal(&config); err != nil {
-		log.Fatal(err)
+	if err := env.Parse(&Config); err != nil {
+		logrus.Fatalf("Error initializing: %s", err.Error())
 	}
-	return
+}
+
+type config struct {
+	Environment string `env:"APP_ENV"`
+	AppPort     string `env:"APP_PORT"`
+	Grpc
+	Mail
+}
+
+type Grpc struct {
+	GrpcHost string `env:"GRPC_HOST"`
+	GrpcPort string `env:"GRPC_PORT"`
+}
+
+type Mail struct {
+	EmailHost        string `env:"EMAIL_HOST"`
+	EmailPort        int    `env:"EMAIL_PORT"`
+	EmailDomain      string `env:"EMAIL_DOMAIN"`
+	EmailPassword    string `env:"EMAIL_PASSWORD"`
+	EmailUserName    string `env:"EMAIL_USERNAME"`
+	EmailEncription  string `env:"EMAIL_ENCRIPTION"`
+	EmailFromName    string `env:"EMAIL_FROM_NAME"`
+	EmailFromAddress string `env:"EMAIL_FROM_ADDRESS"`
 }

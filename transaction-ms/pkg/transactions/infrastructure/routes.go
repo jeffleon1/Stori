@@ -7,7 +7,7 @@ type TransactionRoutes struct {
 }
 
 func (ro *TransactionRoutes) PublicRoutes(public *gin.RouterGroup) {
-	public.POST("/read/csv/buffer", ro.transactionHandler.ProcessAccountResume)
+	public.POST("/account/balance", ro.transactionHandler.AccountBalanceProcessor)
 }
 
 func NewRoutes(transactionHandler TransactionHandler) *TransactionRoutes {

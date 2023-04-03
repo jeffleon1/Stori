@@ -38,3 +38,4 @@ go.work
 coverage/coverage.out
 coverage/coverage.html
 **/example/*
+
