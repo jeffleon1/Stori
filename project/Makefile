@@ -18,3 +18,9 @@ down-email-ms:
 
 up-all: down-transaction-ms down-email-ms up-email-ms up-transaction-ms
 	@echo "all is up and running"
+
+proto-email-ms:
+	cd ../email-ms && make proto
+
+proto-transaction-ms:
+	cd ../transaction-ms && make proto
