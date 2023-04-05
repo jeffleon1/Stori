@@ -8,7 +8,6 @@
     <img src="https://stori-email-images.s3.amazonaws.com/readme/diagrama_de_componentes.png" width="600px" height="250">
 </p>
 
-
 ### Run API
 
 Before you run the API need a .env file, check the folder of each one project email-ms and transaction-ms check the .env-sample for the variables that you need and create yours or change the name for use it
@@ -127,3 +126,6 @@ __Note:__
 
 __Note:__
 ###### the app need to be up and running
+<p align="center">
+    <img src="https://stori-email-images.s3.amazonaws.com/readme/tecnologias.png" width="350px" height="250px">
+</p>

@@ -34,6 +34,8 @@ go.work
 .vscode/extensions.json
 .vscode/*.code-snippets
 
+Stori.code-workspace
+
 .idea/*
 coverage/coverage.out
 coverage/coverage.html
