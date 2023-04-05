@@ -127,5 +127,5 @@ __Note:__
 __Note:__
 ###### the app need to be up and running
 <p align="center">
-    <img src="https://stori-email-images.s3.amazonaws.com/readme/tecnologias.png" width="350px" height="250px">
+    <img src="https://stori-email-images.s3.amazonaws.com/readme/tecnologias.png" height="250px">
 </p>
