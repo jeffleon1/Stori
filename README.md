@@ -40,7 +40,11 @@ if you are in email-ms or transaction-ms use the command below
     make up_all
 ```
 __Note:__
-###### please check first if your docker is running you need it for run the app
+###### 1. Please check first if your docker is running you need it for run the app
+###### 2. Check if you have make installed in your computer if is not, do it with the following command
+```shell
+    sudo apt install make
+```
 
 ---
 ### Testing the app
